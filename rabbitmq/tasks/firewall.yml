@@ -1,0 +1,33 @@
+---
+- name: "Enabling firewall rule for Erlang epmd "
+  firewalld:
+    immediate: true
+    port: 4369/tcp  # epmd
+    permanent: yes
+    state: enabled
+  become: true
+
+- name: "Enabling firewall rule for RabbitMQ Prometheus"
+  firewalld:
+    immediate: true
+    permanent: yes
+    port: 15692/tcp #Prometheus metrics
+    state: enabled
+  become: true
+
+- name: "Enabling firewall rule for RabbitMQ AMPQ"
+  firewalld:
+    immediate: true
+    permanent: yes
+    port: 5671-5672/tcp # tls/plain ampq
+    state: enabled
+  become: true
+
+- name: "Enabling firewall rule for RabbitMQ Management"
+  firewalld:
+    immediate: true
+    permanent: yes
+    port: 15671-15672/tcp  # https/http management
+    state: enabled
+  become: true
+

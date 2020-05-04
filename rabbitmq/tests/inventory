@@ -1,0 +1,6 @@
+[rmq]
+rmq01.local
+rmq02.local
+[rmq:vars]
+rabbitmq_master=rmq01.local
+rabbitmq_erlang_cookie=FGGOOMQEQXPBKNBTTNSI

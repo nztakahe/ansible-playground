@@ -1,0 +1,19 @@
+---
+# tasks file for rabbitmq-packages
+
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Configure RabbitMQ.
+  include: rabbitmq.yml
+
+#- name: Configure RabbitMQ Users.
+#  include: rabbitmq_users.yml
+
+- name: Configure Firewall.
+  include: firewall.yml
+
+- include: rabbitmq_clustering.yml
+  tags: cluster
+#  when: enable_rabbitmq_clustering and (clustered.stat.exists != True)
+#  when: inventory_hostname != "{{ rabbitmq_master }}"

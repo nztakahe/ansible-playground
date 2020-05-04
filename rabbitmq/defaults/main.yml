@@ -1,0 +1,23 @@
+#Upgrade isn't Currently supported
+erlang_version: "22.3.3"
+rabbitmq_erlang_rpm: https://github.com/rabbitmq/erlang-rpm/releases/download/v{{ erlang_version }}/erlang-{{ erlang_version }}-1.el{{ ansible_distribution_major_version }}.x86_64.rpm
+
+rabbitmq_version: "3.8.3"
+rabbitmq_server_rpm: https://github.com/rabbitmq/rabbitmq-server/releases/download/v{{ rabbitmq_version }}/rabbitmq-server-{{ rabbitmq_version }}-1.el{{ ansible_distribution_major_version }}.noarch.rpm
+
+rabbitmq_plugin: 
+  - rabbitmq_management
+  - rabbitmq_prometheus
+  - rabbitmq_shovel
+  - rabbitmq_shovel_management 
+
+rabbitmq_users:
+  - user: admin
+    password: password
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    tags: administrator
+
+rabbitmq_erlang_cookie: DEFAULTCOOKIE

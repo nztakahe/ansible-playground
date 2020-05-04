@@ -1,0 +1,22 @@
+---
+- name: get the rpm or apt package facts
+  package_facts:
+    manager: "auto"
+
+- name: "Installing Erlang from {{ rabbitmq_erlang_rpm }}" 
+  yum:
+    name: "{{ rabbitmq_erlang_rpm }}"
+    state: "present"
+  when: "'erlang' not in ansible_facts.packages"
+  become: true
+
+- debug:
+    var: 'ansible_facts.packages.rabbitmq-server'
+    verbosity: 4
+
+- name: "Installing RabbitMQ from {{ rabbitmq_server_rpm }}" 
+  yum:
+    name: "{{ rabbitmq_server_rpm }}"
+    state: "present"
+  when: "'rabbitmq-server' not in ansible_facts.packages"
+  become: true

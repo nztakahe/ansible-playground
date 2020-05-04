@@ -1,0 +1,4 @@
+---
+- hosts: rmq
+  roles:
+    - rabbitmq
